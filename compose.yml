@@ -1,0 +1,43 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+    ##PASAR EL CONF AL COPY EN UN DOCKERFILE
+      - ./nginx.conf:/etc/nginx/conf.d/nginx-docker.conf:ro
+      - ./pages/.:/usr/share/nginx/html/:ro
+      
+    depends_on:
+      - node
+  node:
+    image: node:latest
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      sh -c "npm install --only=production && npm install --only=development && npm install -g ts-node && npm install mysql2 && npm install --save sequelize && npm install cors && npm start"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: login_docker
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - '3307:3306'
+    volumes:
+      - ./db:/var/lib/mysql/
+  phpadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - '9001:80'
+    environment:
+      - PMA_ARBITRARY=1
+    volumes:
+      - ./phpmyadmin:/var/www/html/config.user.inc.php

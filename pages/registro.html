@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .login-form {
+            max-width: 400px; /* Ajusta este valor según tus necesidades */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <form class="card login-form" action="http://localhost:8000/usuario" method="POST">
+                <div class="card-header">
+                    Registrate
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label" >Usuario</label>
+                            <input type="text" name="User" class="form-control" id="txtUser" aria-describedby="emailHelp">
+                        </div>
+                    </li>
+                    <li class="list-group-item">   
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" name="Password" class="form-control" id="txtPass">
+                        </div>
+                    </li>
+                </ul>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
